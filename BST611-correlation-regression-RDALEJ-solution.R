@@ -20,8 +20,15 @@ plyr::count(cancerData, 'PROTEIN')
 
 ##DESCRIPTIVE STATS AND GRAPHS/CHARTS
 
-summary(cancerData$IDEAL)
 plyr::count(cancerData, 'IDEAL')
+summary(cancerData$IDEAL)
+thirdQuantile <- quantile(cancerData$IDEAL)[4]
+firstQuantile <- quantile(cancerData$IDEAL)[2]
+
+interqurtRange <- IQR(cancerData$IDEAL)*1.5
+
+outliersAbove <- thirdQuantile + interqurtRange
+outliersBelow <- firstQuantile - interqurtRange
 
 #Get a histogram, mean, standard deviation
 histogramIDEAL=hist(cancerData$IDEAL, main="A histogram of the IDEAL values")
@@ -30,7 +37,17 @@ sdIDEAL <- sd(cancerData$IDEAL,na.rm=TRUE)
 print (paste("IDEAL Mean: ", meanIDEAL))
 print (paste("IDEAL St. Dev: ", sdIDEAL))
 
+cancerIdealBoxPlot <-
+  boxplot(cancerData$IDEAL,
+          main = "Cancer Data IDEAL Boxplot",
+          xlab = "x",
+          col = "orange",
+          border = "brown",
+          horizontal = TRUE,
+          notch = TRUE
+          )
 
+cancerIdealBoxPlot
 
 
 qqnorm(cancerData$IDEAL)
