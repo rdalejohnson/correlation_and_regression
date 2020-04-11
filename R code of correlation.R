@@ -89,7 +89,8 @@ qqline(lab$Loss)
 
 #### Scatterplot:  plot(X,Y) for scatterplot of variables X and Y with X on the x-axis and Y on the y-axis.  
 
-#### Plot 1) Age with Loss; 
+#### Plot 
+#### 1) Age with Loss; 
 #### 2) Height with Loss; 
 #### 3) Start Weight with Loss.  
 
@@ -152,7 +153,7 @@ table=rcorr(as.matrix(lab[,c(2,4,5,7)]))
 print(table)
 
 library(PerformanceAnalytics)
-chart.Correlation(lab[,c(2,4,5,7)], histogram=TRUE, pch=16)
+chart.Correlation(lab[,c(2,4,5,7)], histogram=TRUE, pch=19)
 
 
 #### The correlation matrix will always have a 1.0000 running along the diagonal because age (first row) correlated with age (first column) will be 1.000. Height (second row) correlated with height (second column) will be 1.000, etc. Because the lower part of the correlation matrix is identically to the top part, you only need to interpret one. I prefer the lower part. The correlation of Age (first column) with Height (second row) is -0.10699. That crazy box X should be a six. The p-value associated with this relationship is 0.1925. Thus, Age and Height are not statistically correlated.

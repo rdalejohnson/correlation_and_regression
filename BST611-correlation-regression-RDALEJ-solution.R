@@ -1,3 +1,6 @@
+#EXCELLENT correlation article: 
+#   https://www.westga.edu/academics/research/vrc/assets/docs/scatterplots_and_correlation_notes.pdf
+
 
 library(plyr)
 library(tidyverse)
@@ -103,3 +106,20 @@ qqnorm(cancerData$PROTEIN)
 qqline(cancerData$PROTEIN)
 ks.test(x=cancerData$PROTEIN,"pnorm",mean=meanPROTEIN,sd=sdPROTEIN)
 shapiro.test(cancerData$PROTEIN)
+
+
+#################### RELATIONSHIPS BETWEEN PROTEIN and IDEAL #########################
+
+#plot(cancerData$PROTEIN, cancerData$IDEAL, main = "Scatter plot of Protein with Ideal")
+
+plot(cancerData$IDEAL, cancerData$PROTEIN, main = "Scatter plot of Protein with Ideal")
+
+cor.test(cancerData$IDEAL,cancerData$PROTEIN)
+
+library(Hmisc)
+table=rcorr(as.matrix(cancerData[,c(2,3)]))
+print(table)
+
+library(PerformanceAnalytics)
+chart.Correlation(cancerData[,c(2,3)], histogram=TRUE, pch=19)
+
