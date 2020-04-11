@@ -16,6 +16,7 @@
 
 #Step 7: State a Conclusion
 
+lab = read.csv("wt_loss_data.csv",sep=",") 
 
 
 ####Step 1:  Univariate Analyses: Descriptive Statistics and Cleaning the Data: 

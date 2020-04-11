@@ -2,31 +2,30 @@
 library(plyr)
 library(tidyverse)
 
-############CLEANING AND REVIEW OF DATA SET#####################
-############CLEANING AND REVIEW OF DATA SET#####################
-############CLEANING AND REVIEW OF DATA SET#####################
+############READING, CLEANING, AND REVIEW OF DATA SET#####################
+############READING, CLEANING, AND REVIEW OF DATA SET#####################
+############READING, CLEANING, AND REVIEW OF DATA SET#####################
 
 cancerData =read.csv("Cancer.csv",sep=",") 
 
 summary(cancerData$PROTEIN)
 
 plyr::count(cancerData, 'SUBJNO')
-plyr::count(cancerData, 'PROTEIN')
+#plyr::count(cancerData, 'PROTEIN')
 
 
-############################################# THE IDEAL VALUES #######################################
-############################################# THE IDEAL VALUES #######################################
-############################################# THE IDEAL VALUES #######################################
+############################################# THE IDEAL DATA VALUES #######################################
+############################################# THE IDEAL DATA VALUES #######################################
+############################################# THE IDEAL DATA VALUES #######################################
 
 ##DESCRIPTIVE STATS AND GRAPHS/CHARTS
 
 plyr::count(cancerData, 'IDEAL')
 summary(cancerData$IDEAL)
+
 thirdQuantile <- quantile(cancerData$IDEAL)[4]
 firstQuantile <- quantile(cancerData$IDEAL)[2]
-
 interqurtRange <- IQR(cancerData$IDEAL)*1.5
-
 outliersAbove <- thirdQuantile + interqurtRange
 outliersBelow <- firstQuantile - interqurtRange
 
@@ -37,6 +36,7 @@ sdIDEAL <- sd(cancerData$IDEAL,na.rm=TRUE)
 print (paste("IDEAL Mean: ", meanIDEAL))
 print (paste("IDEAL St. Dev: ", sdIDEAL))
 
+### BOX PLOT; note the outliers;
 cancerIdealBoxPlot <-
   boxplot(cancerData$IDEAL,
           main = "Cancer Data IDEAL Boxplot",

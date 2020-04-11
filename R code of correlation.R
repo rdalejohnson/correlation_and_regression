@@ -19,6 +19,7 @@
 
 ##### Age
 
+lab = read.csv("wt_loss_data.csv",sep=",") 
 
 summary(lab$Age)
 sd(lab$Age)
@@ -49,7 +50,8 @@ sd(lab$Loss)
 hitsgram=hist(lab$Loss, main="a histogram of the Loss")
 
 
-#### Start Weight ranges from 90 to 366 with a mean of 182.73. This distribution is positively skewed (median is 173.5). Loss ranges from 8.57 to 20.41 with a mean of 15.94 pounds. Possibly one problem outlier (8.57). No missing data.
+#### Start Weight ranges from 90 to 366 with a mean of 182.73. 
+#### This distribution is positively skewed (median is 173.5). Loss ranges from 8.57 to 20.41 with a mean of 15.94 pounds. Possibly one problem outlier (8.57). No missing data.
 
 
 
@@ -97,7 +99,8 @@ qqline(lab$Loss)
 
 plot(lab$Age,lab$Loss, main = "Scatter plot of Age with Loss")
 
-##### Data is pretty scattered with no obvious direction so probably not a significant relationship. No weird data points.
+##### Data is pretty scattered with no obvious direction so 
+#### probably not a significant relationship. No weird data points.
 
 ##### Scatter plot of Height with Loss
 
@@ -113,7 +116,8 @@ plot(lab$Height,lab$Loss, main = "Scatter plot of Height with Loss")
 plot(lab$Start_Weight,lab$Loss, main = "Scatter plot of Start Weight with Loss")
 
 
-#### Slight negative slope. A couple of weird data points, but they balance each other out so should not influence the correlation.
+#### Slight negative slope. A couple of weird data points, 
+#### but they balance each other out so should not influence the correlation.
 
 ### Step 3:	Run Statistical Test: Correlation
 #### The three primary correlations:  
@@ -153,5 +157,13 @@ chart.Correlation(lab[,c(2,4,5,7)], histogram=TRUE, pch=16)
 
 #### The correlation matrix will always have a 1.0000 running along the diagonal because age (first row) correlated with age (first column) will be 1.000. Height (second row) correlated with height (second column) will be 1.000, etc. Because the lower part of the correlation matrix is identically to the top part, you only need to interpret one. I prefer the lower part. The correlation of Age (first column) with Height (second row) is -0.10699. That crazy box X should be a six. The p-value associated with this relationship is 0.1925. Thus, Age and Height are not statistically correlated.
 
-### Step 4: State a conclusion
-#### The research question was whether a person's age, height, and start weight were associated with weight loss. Based on the correlation, only the subject's height is statistically correlated with weight loss (r= -0.2151; p=0.0082); however, this relationship is weak. In particular, as subjects get taller, weight loss is smaller OR Taller subjects are associated with less weight loss. There were two data points that attenuated this relationship. The next step would be to remove these two data points to see their impact on the strength of the relationship.
+#### Step 4: State a conclusion
+#### The research question was whether a person's age, height, and start weight 
+#### were associated with weight loss. 
+#### Based on the correlation, only the subject's height is statistically correlated 
+#### with weight loss (r= -0.2151; p=0.0082); 
+#### however, this relationship is weak. In particular, as subjects get taller, 
+#### weight loss is smaller OR Taller subjects are associated with less weight loss. 
+#### There were two data points that attenuated this relationship. 
+#### The next step would be to remove these two data points to 
+#### see their impact on the strength of the relationship.
