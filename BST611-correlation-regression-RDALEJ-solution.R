@@ -8,7 +8,7 @@ library(tidyverse)
 
 cancerData =read.csv("Cancer.csv",sep=",") 
 
-summary(cancerData$PROTEIN)
+#summary(cancerData$PROTEIN)
 
 plyr::count(cancerData, 'SUBJNO')
 #plyr::count(cancerData, 'PROTEIN')
@@ -26,8 +26,12 @@ summary(cancerData$IDEAL)
 thirdQuantile <- quantile(cancerData$IDEAL)[4]
 firstQuantile <- quantile(cancerData$IDEAL)[2]
 interqurtRange <- IQR(cancerData$IDEAL)*1.5
-outliersAbove <- thirdQuantile + interqurtRange
-outliersBelow <- firstQuantile - interqurtRange
+outliersAbove <- unname(thirdQuantile + interqurtRange)
+outliersBelow <- unname(firstQuantile - interqurtRange)
+
+outliersListIDEAL <-  cancerData$IDEAL[cancerData$IDEAL < outliersBelow | cancerData$IDEAL > outliersAbove] 
+
+outliersListIDEAL
 
 #Get a histogram, mean, standard deviation
 histogramIDEAL=hist(cancerData$IDEAL, main="A histogram of the IDEAL values")
@@ -49,8 +53,53 @@ cancerIdealBoxPlot <-
 
 cancerIdealBoxPlot
 
-
 qqnorm(cancerData$IDEAL)
 qqline(cancerData$IDEAL)
 ks.test(x=cancerData$IDEAL,"pnorm",mean=meanIDEAL,sd=sdIDEAL)
 shapiro.test(cancerData$IDEAL)
+
+
+
+############################################# THE PROTEIN DATA VALUES #######################################
+############################################# THE PROTEIN DATA VALUES #######################################
+############################################# THE PROTEIN DATA VALUES #######################################
+
+##DESCRIPTIVE STATS AND GRAPHS/CHARTS
+
+plyr::count(cancerData, 'PROTEIN')
+summary(cancerData$PROTEIN)
+
+thirdQuantile <- quantile(cancerData$PROTEIN)[4]
+firstQuantile <- quantile(cancerData$PROTEIN)[2]
+interqurtRange <- IQR(cancerData$PROTEIN)*1.5
+outliersAbove <- unname(thirdQuantile + interqurtRange)
+outliersBelow <- unname(firstQuantile - interqurtRange)
+
+outliersListPROTEIN <-  cancerData$PROTEIN[cancerData$PROTEIN < outliersBelow | cancerData$PROTEIN > outliersAbove] 
+
+outliersListPROTEIN
+
+#Get a histogram, mean, standard deviation
+histogramPROTEIN=hist(cancerData$PROTEIN, main="A histogram of the PROTEIN values")
+meanPROTEIN <- mean(cancerData$PROTEIN,na.rm=TRUE)
+sdPROTEIN <- sd(cancerData$PROTEIN,na.rm=TRUE)
+print (paste("PROTEIN Mean: ", meanPROTEIN))
+print (paste("PROTEIN St. Dev: ", sdPROTEIN))
+
+### BOX PLOT; note the outliers;
+cancerPROTEINBoxPlot <-
+  boxplot(cancerData$PROTEIN,
+          main = "Cancer Data PROTEIN Boxplot",
+          xlab = "x",
+          col = "orange",
+          border = "brown",
+          horizontal = TRUE,
+          notch = TRUE
+  )
+
+cancerPROTEINBoxPlot
+
+qqnorm(cancerData$PROTEIN)
+qqline(cancerData$PROTEIN)
+ks.test(x=cancerData$PROTEIN,"pnorm",mean=meanPROTEIN,sd=sdPROTEIN)
+shapiro.test(cancerData$PROTEIN)
