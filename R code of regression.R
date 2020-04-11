@@ -36,7 +36,8 @@ regression = lm(lab$Loss ~ lab$Height)
 plot(regression$fitted.values,regression$residuals )
 
 
-#Residual by Predicted: Equal amount above and below line. No outliers that would impact the slope of line. Potential outliers on right side may impact the slope. Outlier at bottom may impact the coefficient. Linearity, Equal Variance, and Error Normality are met.
+### Residual by Predicted: Equal amount above and below line. No outliers that would impact the slope of line. 
+### Potential outliers on right side may impact the slope. Outlier at bottom may impact the coefficient. Linearity, Equal Variance, and Error Normality are met.
 
 ##### 2) Plot the standardized residuals against X
 

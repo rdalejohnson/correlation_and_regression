@@ -108,7 +108,7 @@ ks.test(x=cancerData$PROTEIN,"pnorm",mean=meanPROTEIN,sd=sdPROTEIN)
 shapiro.test(cancerData$PROTEIN)
 
 
-#################### RELATIONSHIPS BETWEEN PROTEIN and IDEAL #########################
+#################### CORRELATION - RELATIONSHIPS BETWEEN PROTEIN and IDEAL #########################
 
 #plot(cancerData$PROTEIN, cancerData$IDEAL, main = "Scatter plot of Protein with Ideal")
 
@@ -122,4 +122,10 @@ print(table)
 
 library(PerformanceAnalytics)
 chart.Correlation(cancerData[,c(2,3)], histogram=TRUE, pch=19)
+
+
+##### REGRESSION
+regression = lm(cancerData$PROTEIN ~ cancerData$IDEAL)
+plot(regression$fitted.values,regression$residuals )
+
 

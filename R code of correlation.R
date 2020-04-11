@@ -137,12 +137,18 @@ cor.test(lab$Age,lab$Loss)
 
 cor.test(lab$Height,lab$Loss)
 
+#part of the correlation matrix printed by the chart.Correlation call at the end
+cor.test(lab$Height,lab$Age)
+
 #Height with Loss:  r= -0.215; p=0.008
 #Statistically Significant.
 
 #### 3) Start Weight with Loss.
 
 cor.test(lab$Start_Weight,lab$Loss)
+
+#part of the correlation matrix printed by the chart.Correlation call at the end
+cor.test(lab$Start_Weight,lab$Height)
 
 #Start Weight with Loss:  r= -0.113; p=0.1693
 #Not Statistically Significant.
