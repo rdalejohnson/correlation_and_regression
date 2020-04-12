@@ -5,16 +5,24 @@
 
 library(plyr)
 library(tidyverse)
+library(MASS)
+library(Hmisc)
+library(PerformanceAnalytics)
+
+
+
 
 ############READING, CLEANING, AND REVIEW OF DATA SET#####################
 ############READING, CLEANING, AND REVIEW OF DATA SET#####################
 ############READING, CLEANING, AND REVIEW OF DATA SET#####################
 
 cancerData =read.csv("Cancer.csv",sep=",") 
+nrow(cancerData)
+nrow(na.omit(cancerData))
 
 #summary(cancerData$PROTEIN)
 
-plyr::count(cancerData, 'SUBJNO')
+#plyr::count(cancerData, 'SUBJNO')
 #plyr::count(cancerData, 'PROTEIN')
 
 
@@ -24,7 +32,7 @@ plyr::count(cancerData, 'SUBJNO')
 
 ##DESCRIPTIVE STATS AND GRAPHS/CHARTS
 
-plyr::count(cancerData, 'IDEAL')
+#plyr::count(cancerData, 'IDEAL')
 summary(cancerData$IDEAL)
 
 thirdQuantile <- quantile(cancerData$IDEAL)[4]
@@ -70,7 +78,7 @@ shapiro.test(cancerData$IDEAL)
 
 ##DESCRIPTIVE STATS AND GRAPHS/CHARTS
 
-plyr::count(cancerData, 'PROTEIN')
+#plyr::count(cancerData, 'PROTEIN')
 summary(cancerData$PROTEIN)
 
 thirdQuantile <- quantile(cancerData$PROTEIN)[4]
@@ -117,7 +125,6 @@ plot(cancerData$IDEAL, cancerData$PROTEIN, main = "Scatter plot of Protein with 
 
 cor.test(cancerData$IDEAL,cancerData$PROTEIN)
 
-library(Hmisc)
 table=rcorr(as.matrix(cancerData[,c(2,3)]))
 print(table)
 
