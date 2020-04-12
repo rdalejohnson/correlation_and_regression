@@ -1,3 +1,11 @@
+#################>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> REGRESSION <<<<<<<<<<<<<<<<<<< #################################
+#################>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> REGRESSION <<<<<<<<<<<<<<<<<<< #################################
+#################>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> REGRESSION <<<<<<<<<<<<<<<<<<< #################################
+#################>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> REGRESSION <<<<<<<<<<<<<<<<<<< #################################
+#################>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> REGRESSION <<<<<<<<<<<<<<<<<<< #################################
+#################>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> REGRESSION <<<<<<<<<<<<<<<<<<< #################################
+
+
 #####Research Question: Does a person's height predict his/her weight loss?
 
 #####Procedure:
@@ -36,12 +44,24 @@ regression = lm(lab$Loss ~ lab$Height)
 plot(regression$fitted.values,regression$residuals )
 
 
+
+
+
+
+
+
 ### Residual by Predicted: Equal amount above and below line. No outliers that would impact the slope of line. 
 ### Potential outliers on right side may impact the slope. Outlier at bottom may impact the coefficient. Linearity, Equal Variance, and Error Normality are met.
 
 ##### 2) Plot the standardized residuals against X
 
 plot(lab$Height,regression$residuals, main = "Plot of studentized residuals \n  and predictor (height)to assess homogenity  \n of variance and linearity")
+
+
+
+
+
+
 
 
 #Height by Loss: The dots are nicely scattered around. No Issues.
@@ -52,6 +72,9 @@ qqnorm(regression$residuals)
 qqline(regression$residuals)
 
 
+
+
+
 #Normality on Residuals: The residuals are normally distributed. No issues. The normality assumption is met.
 
 
@@ -60,9 +83,26 @@ qqline(regression$residuals)
 plot (regression)
 
 
+
+
+
+
+
+
+
+##### >>>>>>>>>>>>>> CONFIDENCE INTERVALS ON THE REGRESSION <<<<<<<<<<<<<<<<<<
+confint(regression)
+
+
+
 #### Setp 5:  Examine Model Fit Diagnostics
 
 summary(regression)
+
+
+
+
+
 
 
 ##### 1st Step: Analysis of Variance Table: The Global F-Test of 7.18 is statistically significant at p=0.0082. If this was not significant, we would stop. Since it is significant, let's look at the other model fit diagnostics.

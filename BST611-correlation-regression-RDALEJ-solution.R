@@ -1,6 +1,7 @@
 #EXCELLENT correlation article: 
 #   https://www.westga.edu/academics/research/vrc/assets/docs/scatterplots_and_correlation_notes.pdf
-
+#Confidence intervals on lm
+#   https://rpubs.com/aaronsc32/regression-confidence-prediction-intervals
 
 library(plyr)
 library(tidyverse)
@@ -124,7 +125,7 @@ library(PerformanceAnalytics)
 chart.Correlation(cancerData[,c(2,3)], histogram=TRUE, pch=19)
 
 
-##### REGRESSION
+############################## REGRESSION ######################################
 regression = lm(cancerData$PROTEIN ~ cancerData$IDEAL)
 plot(regression$fitted.values,regression$residuals )
 
