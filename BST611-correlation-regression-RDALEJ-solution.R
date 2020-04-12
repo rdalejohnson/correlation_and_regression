@@ -78,6 +78,8 @@ shapiro.test(cancerData$IDEAL)
 
 ##DESCRIPTIVE STATS AND GRAPHS/CHARTS
 
+cancerData$PROTEIN[cancerData$PROTEIN > 6] <- NA   ############ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 #plyr::count(cancerData, 'PROTEIN')
 summary(cancerData$PROTEIN)
 
