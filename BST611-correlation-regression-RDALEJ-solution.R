@@ -17,6 +17,9 @@ library(PerformanceAnalytics)
 ############READING, CLEANING, AND REVIEW OF DATA SET#####################
 
 cancerData =read.csv("Cancer.csv",sep=",") 
+
+cancerData <- cancerData[!(cancerData$PROTEIN > 6),]
+
 nrow(cancerData)
 nrow(na.omit(cancerData))
 
@@ -80,7 +83,7 @@ shapiro.test(cancerData$IDEAL)
 
 #cancerData$PROTEIN[cancerData$PROTEIN > 6] <- NA   ############ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-cancerData <- cancerData[!(cancerData$PROTEIN > 6),]
+#cancerData <- cancerData[!(cancerData$PROTEIN > 6),]
 
 #plyr::count(cancerData, 'PROTEIN')
 summary(cancerData$PROTEIN)
@@ -185,6 +188,10 @@ confint(regression)
 #### Setp 5:  Examine Model Fit Diagnostics
 
 summary(regression)
+
+#explains why the confidence intervals appear to be 2.5% instead of 5%
+#https://stats.stackexchange.com/questions/177005/interpreting-glm-output-from-r
+confint(regression)
 
 
 

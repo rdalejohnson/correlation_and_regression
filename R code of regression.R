@@ -148,7 +148,9 @@ filter.studentized.residuals=whole[whole$Studentized_Residuals>=2|whole$Studenti
 filter.studentized.residuals
 
 
-#We have 5 subjects who meet the criterion that the residuals are greater than and equal to 2, and 2 subjects who meet the criterion that the residuals are less than and equal to -2. The -3.70124 value is associated with a subject who lost 8.57 lbs.
+#We have 5 subjects who meet the criterion that the residuals are greater than and equal to 2, 
+#and 2 subjects who meet the criterion that the residuals are less than and equal to -2. 
+#The -3.70124 value is associated with a subject who lost 8.57 lbs.
 
 #### Hat values > 0.0267
 
@@ -165,13 +167,20 @@ filter.cooks.d=whole[whole$Cooks_D>0.0267,]
 filter.cooks.d
 
 
-#Cook's D values > 0.0267 should be considered. Our spicious outlier 8.57 is greater than the cutpoint and may potentially impact the regression coefficient. Our suspicious outlier 8.6 is the 0.057965 value. We have one other subject that is greater and has about three times the effect (0.1739389681). Looking in the data set, this individual has weight loss of 14.2 and a height of 51 inches. This individual is also the Hat Diagonal of 0.1000403438.
+#Cook's D values > 0.0267 should be considered. Our spicious outlier 8.57 is greater than the cutpoint 
+#and may potentially impact the regression coefficient. Our suspicious outlier 8.6 is the 0.057965 value. 
+#We have one other subject that is greater and has about three times the effect (0.1739389681). 
+#Looking in the data set, this individual has weight loss of 14.2 and a height of 51 inches. 
+#This individual is also the Hat Diagonal of 0.1000403438.
 
-#We should run the regression without each of these two data points to see if there is a difference in the model fit and the results below. For our purposes, let's assume no difference.
+#We should run the regression without each of these two data points to see if there is a difference in the model fit 
+#and the results below. For our purposes, let's assume no difference.
 
 ### Step 7: State a Conclusion
 
 summary(regression)
+confint(regression)
+
 
 
 #### The significant overall model (F(1,148)=7.18; p=.008) suggests that at least one slope in the model is significant. Because a height of zero does not make practical sense, the intercept should not be interpreted. If the intercept were to be interpreted, it would be "When height is zero, the mean weight loss was 23.31 pounds". For the variable, height, we interpret "as height increases by one inch, the associated mean decrease in weight loss is 0.11 pounds".
