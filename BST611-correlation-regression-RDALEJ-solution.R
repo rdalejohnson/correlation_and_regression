@@ -78,7 +78,9 @@ shapiro.test(cancerData$IDEAL)
 
 ##DESCRIPTIVE STATS AND GRAPHS/CHARTS
 
-cancerData$PROTEIN[cancerData$PROTEIN > 6] <- NA   ############ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#cancerData$PROTEIN[cancerData$PROTEIN > 6] <- NA   ############ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+cancerData <- cancerData[!(cancerData$PROTEIN > 6),]
 
 #plyr::count(cancerData, 'PROTEIN')
 summary(cancerData$PROTEIN)
@@ -88,6 +90,8 @@ firstQuantile <- quantile(cancerData$PROTEIN)[2]
 interqurtRange <- IQR(cancerData$PROTEIN)*1.5
 outliersAbove <- unname(thirdQuantile + interqurtRange)
 outliersBelow <- unname(firstQuantile - interqurtRange)
+
+print (IQR(cancerData$PROTEIN))
 
 outliersListPROTEIN <-  cancerData$PROTEIN[cancerData$PROTEIN < outliersBelow | cancerData$PROTEIN > outliersAbove] 
 
@@ -136,6 +140,51 @@ chart.Correlation(cancerData[,c(2,3)], histogram=TRUE, pch=19)
 
 ############################## REGRESSION ######################################
 regression = lm(cancerData$PROTEIN ~ cancerData$IDEAL)
+
 plot(regression$fitted.values,regression$residuals )
+
+
+
+
+
+plot(cancerData$IDEAL,regression$residuals, main = "Plot of studentized residuals \n  and predictor (ideal body weight) to assess homogenity  \n of variance and linearity")
+
+
+
+histogramRESIDUALS=hist(regression$residuals, main="A histogram of the regression residuals")
+
+
+
+qqnorm(regression$residuals)
+qqline(regression$residuals)
+
+
+
+
+
+#Normality on Residuals: The residuals are normally distributed. No issues. The normality assumption is met.
+
+
+#### Or you can just try statement "plot (regression)". It will give you all diagnostic figures defaulted by R.
+
+plot (regression)
+
+
+
+
+
+
+
+
+
+##### >>>>>>>>>>>>>> CONFIDENCE INTERVALS ON THE REGRESSION <<<<<<<<<<<<<<<<<<
+confint(regression)
+
+
+
+#### Setp 5:  Examine Model Fit Diagnostics
+
+summary(regression)
+
 
 
